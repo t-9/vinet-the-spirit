@@ -12,5 +12,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(string(markets))
+
+	fmt.Println("ProductCode, MarketType, Alias")
+	for _, m := range markets {
+		fmt.Println(m)
+	}
 }
