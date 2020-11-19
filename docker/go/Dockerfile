@@ -1,5 +1,8 @@
 FROM golang:1.15.5-alpine3.12
 
-ADD main.go /go/main.go
+ADD . /go/src/vinet
 
-RUN go build -o vinet
+WORKDIR /go/src/vinet
+
+RUN cd /go/src/vinet && \
+    go build -o vinet
