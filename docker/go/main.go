@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 
 	"vinet/board"
 	"vinet/market"
@@ -30,7 +31,23 @@ func main() {
 				log.Fatal(err)
 			}
 		case "2":
-			if err := board.PrintList("BTC_JPY"); err != nil {
+			fmt.Println(message.GetWhichBoard())
+			choices, err := market.PrintChoices()
+			if err != nil {
+				log.Fatal(err)
+			}
+			fmt.Print(message.GetInputLine())
+			scanner := bufio.NewScanner(os.Stdin)
+			scanner.Scan()
+			fmt.Println("")
+
+			c, cerr := strconv.Atoi(scanner.Text())
+			if cerr != nil || c >= len(choices) || c < 0 {
+				fmt.Println(message.GetWrongChoice())
+				break
+			}
+
+			if err := board.PrintList(choices[c]); err != nil {
 				log.Fatal(err)
 			}
 		}

@@ -18,3 +18,20 @@ func PrintList() error {
 	}
 	return nil
 }
+
+func PrintChoices() ([]string, error) {
+	var choices []string
+	markets, err := getMarkets()
+	if err != nil {
+		return choices, err
+	}
+
+	choices = make([]string, len(markets), len(markets))
+
+	fmt.Println("Number, ProductCode, MarketType, Alias")
+	for i, m := range markets {
+		choices[i] = m.ProductCode
+		fmt.Printf("%d. %s\n", i, m)
+	}
+	return choices, nil
+}
