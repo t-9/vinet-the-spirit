@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"time"
 )
 
 type Market struct {
@@ -13,22 +14,28 @@ type Market struct {
 }
 
 func getMarkets() ([]Market, error) {
+	var markets []Market
+
 	url := "https://api.bitflyer.com/v1/getmarkets"
 
-	resp, err := http.Get(url)
+	timeout := time.Duration(5 * time.Second)
+	client := &http.Client{
+		Timeout: timeout,
+	}
+
+	resp, err := client.Get(url)
 	if err != nil {
-		return nil, err
+		return markets, err
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return markets, err
 	}
 
-	var markets []Market
 	if err := json.Unmarshal(body, &markets); err != nil {
-		return nil, err
+		return markets, err
 	}
 
 	return markets, nil

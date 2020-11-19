@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 
+	"vinet/board"
 	"vinet/market"
 	"vinet/message"
 )
@@ -26,6 +27,10 @@ func main() {
 			shouldExit = true
 		case "1":
 			if err := market.PrintList(); err != nil {
+				log.Fatal(err)
+			}
+		case "2":
+			if err := board.PrintList("BTC_JPY"); err != nil {
 				log.Fatal(err)
 			}
 		}

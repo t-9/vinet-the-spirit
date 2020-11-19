@@ -7,6 +7,7 @@ func GetHello() string {
 func GetMenu() string {
 	return `いかがなさいますか?
 1. マーケット一覧を表示して
+2. 板情報を表示して
 0. 特に用はないよ
 > `
 }
