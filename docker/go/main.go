@@ -1,20 +1,40 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
+	"os"
 
 	"vinet/market"
+	"vinet/message"
 )
 
 func main() {
-	markets, err := market.GetMarkets()
-	if err != nil {
-		log.Fatal(err)
+	fmt.Println(message.GetHello())
+	fmt.Println("")
+
+	for {
+		fmt.Print(message.GetMenu())
+		scanner := bufio.NewScanner(os.Stdin)
+		scanner.Scan()
+		fmt.Println("")
+
+		shouldExit := false
+		switch scanner.Text() {
+		case "0":
+			shouldExit = true
+		case "1":
+			if err := market.PrintList(); err != nil {
+				log.Fatal(err)
+			}
+		}
+
+		if shouldExit {
+			break
+		}
+		fmt.Println("")
 	}
 
-	fmt.Println("ProductCode, MarketType, Alias")
-	for _, m := range markets {
-		fmt.Println(m)
-	}
+	fmt.Println(message.GetBye())
 }

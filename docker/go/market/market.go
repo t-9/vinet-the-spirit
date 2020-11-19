@@ -2,7 +2,6 @@ package market
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -13,11 +12,7 @@ type Market struct {
 	Alias       string `json:"alias"`
 }
 
-func (m Market) String() string {
-	return fmt.Sprintf("%s, %s, %s", m.ProductCode, m.MarketType, m.Alias)
-}
-
-func GetMarkets() ([]Market, error) {
+func getMarkets() ([]Market, error) {
 	url := "https://api.bitflyer.com/v1/getmarkets"
 
 	resp, err := http.Get(url)
