@@ -2,6 +2,7 @@ package board
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -46,6 +47,10 @@ func getBoard(code string) (Board, error) {
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return board, err
+	}
+
+	if resp.StatusCode != 200 {
+		return board, fmt.Errorf(string(body))
 	}
 
 	if err := json.Unmarshal(body, &board); err != nil {

@@ -2,6 +2,7 @@ package market
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -32,6 +33,10 @@ func getMarkets() ([]Market, error) {
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return markets, err
+	}
+
+	if resp.StatusCode != 200 {
+		return markets, fmt.Errorf(string(body))
 	}
 
 	if err := json.Unmarshal(body, &markets); err != nil {

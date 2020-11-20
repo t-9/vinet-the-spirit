@@ -8,6 +8,7 @@ import (
 	"strconv"
 
 	"vinet/auth"
+	"vinet/balance"
 	"vinet/board"
 	"vinet/market"
 	"vinet/message"
@@ -29,13 +30,14 @@ func main() {
 			shouldExit = true
 		case "1":
 			if err := market.PrintList(); err != nil {
-				log.Fatal(err)
+				log.Println(err)
 			}
 		case "2":
 			fmt.Println(message.GetWhichBoard())
 			choices, err := market.PrintChoices()
 			if err != nil {
-				log.Fatal(err)
+				log.Println(err)
+				break
 			}
 			fmt.Print(message.GetInputLine())
 			scanner := bufio.NewScanner(os.Stdin)
@@ -49,7 +51,7 @@ func main() {
 			}
 
 			if err := board.PrintList(choices[c]); err != nil {
-				log.Fatal(err)
+				log.Println(err)
 			}
 		case "3":
 			fmt.Println(message.GetAPIKey())
@@ -64,7 +66,13 @@ func main() {
 			scanner = bufio.NewScanner(os.Stdin)
 			scanner.Scan()
 			fmt.Println("")
-			auth.SetAccessSecret(scanner.Text())
+			if err := auth.SetAccessSecret(scanner.Text()); err != nil {
+				log.Println(err)
+			}
+		case "4":
+			if err := balance.PrintList(); err != nil {
+				log.Println(err)
+			}
 		}
 
 		if shouldExit {
