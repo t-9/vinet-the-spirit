@@ -15,6 +15,7 @@ import (
 	"vinet/deposit"
 	"vinet/market"
 	"vinet/message"
+	"vinet/sendchildorder"
 )
 
 func main() {
@@ -66,7 +67,6 @@ func main() {
 
 			fmt.Println(message.GetAPISecret())
 			fmt.Print(message.GetInputLine())
-			scanner = bufio.NewScanner(os.Stdin)
 			scanner.Scan()
 			fmt.Println("")
 			if err := auth.SetAccessSecret(scanner.Text()); err != nil {
@@ -86,6 +86,102 @@ func main() {
 			}
 		case "7":
 			if err := address.PrintList(); err != nil {
+				log.Println(err)
+			}
+		case "8":
+			fmt.Println(message.GetWhichBoard())
+			choices, err := market.PrintChoices()
+			if err != nil {
+				log.Println(err)
+				break
+			}
+			fmt.Print(message.GetInputLine())
+			scanner := bufio.NewScanner(os.Stdin)
+			scanner.Scan()
+			fmt.Println("")
+
+			productNumber, err := strconv.Atoi(scanner.Text())
+			if err != nil || productNumber >= len(choices) || productNumber < 0 {
+				fmt.Println(message.GetWrongChoice())
+				break
+			}
+			productCode := choices[productNumber]
+
+			fmt.Println("childOrderType?")
+			fmt.Print(message.GetInputLine())
+			scanner.Scan()
+			fmt.Println("")
+			childOrderType := scanner.Text()
+			if childOrderType != "LIMIT" && childOrderType != "MARKET" {
+				fmt.Println("wrong")
+				break
+			}
+
+			fmt.Println("side?")
+			fmt.Print(message.GetInputLine())
+			scanner.Scan()
+			fmt.Println("")
+			side := scanner.Text()
+			if side != "BUY" && side != "SELL" {
+				fmt.Println("wrong")
+				break
+			}
+
+			var price float64
+			if childOrderType == "LIMIT" {
+				fmt.Println("price?")
+				fmt.Print(message.GetInputLine())
+				scanner := bufio.NewScanner(os.Stdin)
+				scanner.Scan()
+				fmt.Println("")
+				price, err = strconv.ParseFloat(scanner.Text(), 64)
+				if err != nil || price < 0.0 {
+					fmt.Println("wrong")
+					break
+				}
+			}
+
+			fmt.Println("size?")
+			fmt.Print(message.GetInputLine())
+			scanner.Scan()
+			fmt.Println("")
+			size, err := strconv.ParseFloat(scanner.Text(), 64)
+			if err != nil {
+				fmt.Println("wrong")
+				break
+			}
+
+			fmt.Println("minite_to_expire?")
+			fmt.Print(message.GetInputLine())
+			scanner.Scan()
+			fmt.Println("")
+			miniteToExpire, err := strconv.ParseInt(scanner.Text(), 10, 64)
+			if err != nil {
+				fmt.Println("wrong")
+				break
+			}
+
+			fmt.Println("time_in_force?")
+			fmt.Print(message.GetInputLine())
+			scanner.Scan()
+			fmt.Println("")
+			timeInForce := scanner.Text()
+			if timeInForce != "GTC" && timeInForce != "IOC" && timeInForce != "FOK" {
+				fmt.Println("wrong")
+				break
+			}
+
+			b := sendchildorder.Body{
+				ProductCode:    productCode,
+				ChildOrderType: childOrderType,
+				Side:           side,
+				Price:          price,
+				Size:           size,
+				MinuteToExpire: miniteToExpire,
+				TimeInForce:    timeInForce,
+			}
+
+			if err := sendchildorder.Send(b); err != nil {
 				log.Println(err)
 			}
 		}
