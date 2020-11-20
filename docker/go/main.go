@@ -7,6 +7,7 @@ import (
 	"os"
 	"strconv"
 
+	"vinet/address"
 	"vinet/auth"
 	"vinet/balance"
 	"vinet/board"
@@ -81,6 +82,10 @@ func main() {
 			}
 		case "6":
 			if err := deposit.PrintList(); err != nil {
+				log.Println(err)
+			}
+		case "7":
+			if err := address.PrintList(); err != nil {
 				log.Println(err)
 			}
 		}
