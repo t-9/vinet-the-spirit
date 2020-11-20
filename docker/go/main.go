@@ -11,6 +11,7 @@ import (
 	"vinet/balance"
 	"vinet/board"
 	"vinet/coinin"
+	"vinet/deposit"
 	"vinet/market"
 	"vinet/message"
 )
@@ -76,6 +77,10 @@ func main() {
 			}
 		case "5":
 			if err := coinin.PrintList(); err != nil {
+				log.Println(err)
+			}
+		case "6":
+			if err := deposit.PrintList(); err != nil {
 				log.Println(err)
 			}
 		}
