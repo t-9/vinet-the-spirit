@@ -10,6 +10,7 @@ import (
 	"vinet/auth"
 	"vinet/balance"
 	"vinet/board"
+	"vinet/coinin"
 	"vinet/market"
 	"vinet/message"
 )
@@ -71,6 +72,10 @@ func main() {
 			}
 		case "4":
 			if err := balance.PrintList(); err != nil {
+				log.Println(err)
+			}
+		case "5":
+			if err := coinin.PrintList(); err != nil {
 				log.Println(err)
 			}
 		}
