@@ -1,6 +1,10 @@
 package message
 
-import "fmt"
+import (
+	"fmt"
+
+	"vinet/menu"
+)
 
 func GetHello() string {
 	return "ごきげんよう^_^"
@@ -8,16 +12,27 @@ func GetHello() string {
 
 func GetMenu() string {
 	return fmt.Sprintf(`いかがなさいますか?
-1. マーケット一覧を表示して
-2. 板情報を表示して
-3. アクセスキーを登録して
-4. 資産残高を取得して
-5. 仮想通貨預入履歴を表示して
-6. 入金履歴を表示して
-7. 預入用アドレスを表示して
-8. 新規注文を出して
-0. 特に用はないよ
-%s`, GetInputLine())
+%d. マーケット一覧を表示して
+%d. 板情報を表示して
+%d. アクセスキーを登録して
+%d. 資産残高を取得して
+%d. 仮想通貨預入履歴を表示して
+%d. 入金履歴を表示して
+%d. 預入用アドレスを表示して
+%d. 新規注文を出して
+%d. 特に用はないよ
+%s`,
+		menu.ShowMarkets,
+		menu.ShowBoard,
+		menu.RegisterAccessKey,
+		menu.ShowBalance,
+		menu.ShowCoinIn,
+		menu.ShowDeposit,
+		menu.ShowAddress,
+		menu.SendChildOrder,
+		menu.Exit,
+		GetInputLine(),
+	)
 }
 
 func GetBye() string {

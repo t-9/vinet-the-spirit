@@ -14,6 +14,7 @@ import (
 	"vinet/coinin"
 	"vinet/deposit"
 	"vinet/market"
+	"vinet/menu"
 	"vinet/message"
 	"vinet/sendchildorder"
 )
@@ -28,15 +29,22 @@ func main() {
 		scanner.Scan()
 		fmt.Println("")
 
+		c, err := strconv.Atoi(scanner.Text())
+		if err != nil || c < 0 {
+			log.Println(message.GetWrongChoice())
+			fmt.Println("")
+			continue
+		}
+
 		shouldExit := false
-		switch scanner.Text() {
-		case "0":
+		switch c {
+		case menu.Exit:
 			shouldExit = true
-		case "1":
+		case menu.ShowMarkets:
 			if err := market.PrintList(); err != nil {
 				log.Println(err)
 			}
-		case "2":
+		case menu.ShowBoard:
 			productCode, err := market.SelectProductCode()
 			if err != nil {
 				log.Println(err)
@@ -45,7 +53,7 @@ func main() {
 			if err := board.PrintList(productCode); err != nil {
 				log.Println(err)
 			}
-		case "3":
+		case menu.RegisterAccessKey:
 			fmt.Println(message.GetAPIKey())
 			fmt.Print(message.GetInputLine())
 			scanner := bufio.NewScanner(os.Stdin)
@@ -60,23 +68,23 @@ func main() {
 			if err := auth.SetAccessSecret(scanner.Text()); err != nil {
 				log.Println(err)
 			}
-		case "4":
+		case menu.ShowBalance:
 			if err := balance.PrintList(); err != nil {
 				log.Println(err)
 			}
-		case "5":
+		case menu.ShowCoinIn:
 			if err := coinin.PrintList(); err != nil {
 				log.Println(err)
 			}
-		case "6":
+		case menu.ShowDeposit:
 			if err := deposit.PrintList(); err != nil {
 				log.Println(err)
 			}
-		case "7":
+		case menu.ShowAddress:
 			if err := address.PrintList(); err != nil {
 				log.Println(err)
 			}
-		case "8":
+		case menu.SendChildOrder:
 			productCode, err := market.SelectProductCode()
 			if err != nil {
 				log.Println(err)
