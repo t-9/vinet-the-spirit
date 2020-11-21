@@ -12,14 +12,14 @@ import (
 )
 
 type CoinIn struct {
-	ID           int64     `json:"id"`
-	OrderID      string    `json:"order_id"`
-	CurrencyCode string    `json:"currency_code"`
-	Amount       float64   `json:"amount"`
-	Address      string    `json:"address"`
-	TxHash       string    `json:"tx_hash"`
-	Status       string    `json:"status"`
-	EventDate    time.Time `json:"event_date"`
+	ID           int64   `json:"id"`
+	OrderID      string  `json:"order_id"`
+	CurrencyCode string  `json:"currency_code"`
+	Amount       float64 `json:"amount"`
+	Address      string  `json:"address"`
+	TxHash       string  `json:"tx_hash"`
+	Status       string  `json:"status"`
+	EventDate    string  `json:"event_date"`
 }
 
 func getCoinIns() ([]CoinIn, error) {

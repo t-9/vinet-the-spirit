@@ -12,12 +12,12 @@ import (
 )
 
 type Deposit struct {
-	ID           int64     `json:"id"`
-	OrderID      string    `json:"order_id"`
-	CurrencyCode string    `json:"currency_code"`
-	Amount       int64     `json:"amount"`
-	Status       string    `json:"status"`
-	EventDate    time.Time `json:"event_date"`
+	ID           int64  `json:"id"`
+	OrderID      string `json:"order_id"`
+	CurrencyCode string `json:"currency_code"`
+	Amount       int64  `json:"amount"`
+	Status       string `json:"status"`
+	EventDate    string `json:"event_date"`
 }
 
 func getDeposits() ([]Deposit, error) {

@@ -2,7 +2,6 @@ package coinin
 
 import (
 	"fmt"
-	"time"
 )
 
 func (c CoinIn) String() string {
@@ -15,7 +14,7 @@ func (c CoinIn) String() string {
 		c.Address,
 		c.TxHash,
 		c.Status,
-		c.EventDate.Format(time.RFC3339),
+		c.EventDate,
 	)
 }
 

@@ -2,7 +2,6 @@ package deposit
 
 import (
 	"fmt"
-	"time"
 )
 
 func (d Deposit) String() string {
@@ -13,7 +12,7 @@ func (d Deposit) String() string {
 		d.CurrencyCode,
 		d.Amount,
 		d.Status,
-		d.EventDate.Format(time.RFC3339),
+		d.EventDate,
 	)
 }
 
