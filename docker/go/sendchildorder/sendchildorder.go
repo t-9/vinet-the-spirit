@@ -12,6 +12,18 @@ import (
 	"vinet/auth"
 )
 
+const (
+	TypeLimit  = "LIMIT"
+	TypeMarket = "MARKET"
+
+	SideBuy  = "BUY"
+	SideSell = "SELL"
+
+	TimeInForceGTC = "GTC"
+	TimeInForceIOC = "IOC"
+	TimeInForceFOK = "FOK"
+)
+
 type Body struct {
 	ProductCode    string  `json:"product_code"`
 	ChildOrderType string  `json:"child_order_type"`

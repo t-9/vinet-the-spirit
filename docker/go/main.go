@@ -88,7 +88,7 @@ func main() {
 			scanner.Scan()
 			fmt.Println("")
 			childOrderType := scanner.Text()
-			if childOrderType != "LIMIT" && childOrderType != "MARKET" {
+			if childOrderType != sendchildorder.TypeLimit && childOrderType != sendchildorder.TypeMarket {
 				fmt.Println("wrong")
 				break
 			}
@@ -98,13 +98,13 @@ func main() {
 			scanner.Scan()
 			fmt.Println("")
 			side := scanner.Text()
-			if side != "BUY" && side != "SELL" {
+			if side != sendchildorder.SideBuy && side != sendchildorder.SideSell {
 				fmt.Println("wrong")
 				break
 			}
 
 			var price float64
-			if childOrderType == "LIMIT" {
+			if childOrderType == sendchildorder.TypeLimit {
 				fmt.Println("price?")
 				fmt.Print(message.GetInputLine())
 				scanner := bufio.NewScanner(os.Stdin)
@@ -142,7 +142,9 @@ func main() {
 			scanner.Scan()
 			fmt.Println("")
 			timeInForce := scanner.Text()
-			if timeInForce != "GTC" && timeInForce != "IOC" && timeInForce != "FOK" {
+			if timeInForce != sendchildorder.TimeInForceGTC &&
+				timeInForce != sendchildorder.TimeInForceIOC &&
+				timeInForce != sendchildorder.TimeInForceFOK {
 				fmt.Println("wrong")
 				break
 			}
