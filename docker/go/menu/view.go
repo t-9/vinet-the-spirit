@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"vinet/message"
+	"vinet/util"
 )
 
 func SelectMenu() (int64, error) {
@@ -33,7 +34,7 @@ func SelectMenu() (int64, error) {
 	fmt.Println("")
 
 	c, err := strconv.ParseInt(scanner.Text(), 10, 64)
-	if err != nil || !contains(menuItemList, c) {
+	if err != nil || !util.ContainsInt64(menuItemList, c) {
 		return -1, fmt.Errorf(message.GetWrongChoice())
 	}
 	return c, err
@@ -61,13 +62,4 @@ func getMenuItemMessage(n int64) string {
 		return message.GetExit()
 	}
 	return ""
-}
-
-func contains(h []int64, n int64) bool {
-	for _, v := range h {
-		if v == n {
-			return true
-		}
-	}
-	return false
 }

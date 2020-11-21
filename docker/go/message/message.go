@@ -91,3 +91,7 @@ func GetMinuteToExpire() string {
 func GetTimeInForce() string {
 	return "執行数量条件はどちらになさいますか?"
 }
+
+func GetInvalidInputValue() string {
+	return "有効な値を入力してくださいませ"
+}
