@@ -1,6 +1,13 @@
 package market
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+
+	"vinet/message"
+)
 
 func (m Market) String() string {
 	return fmt.Sprintf("%s, %s, %s", m.ProductCode, m.MarketType, m.Alias)
@@ -19,7 +26,7 @@ func PrintList() error {
 	return nil
 }
 
-func PrintChoices() ([]string, error) {
+func printChoices() ([]string, error) {
 	var choices []string
 	markets, err := getMarkets()
 	if err != nil {
@@ -34,4 +41,22 @@ func PrintChoices() ([]string, error) {
 		fmt.Printf("%d. %s\n", i, m)
 	}
 	return choices, nil
+}
+
+func SelectProductCode() (string, error) {
+	fmt.Println(message.GetWhichBoard())
+	choices, err := printChoices()
+	if err != nil {
+		return "", err
+	}
+	fmt.Print(message.GetInputLine())
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	fmt.Println("")
+
+	c, cerr := strconv.Atoi(scanner.Text())
+	if cerr != nil || c >= len(choices) || c < 0 {
+		return "", fmt.Errorf(message.GetWrongChoice())
+	}
+	return choices[c], nil
 }

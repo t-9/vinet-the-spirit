@@ -37,24 +37,12 @@ func main() {
 				log.Println(err)
 			}
 		case "2":
-			fmt.Println(message.GetWhichBoard())
-			choices, err := market.PrintChoices()
+			productCode, err := market.SelectProductCode()
 			if err != nil {
 				log.Println(err)
 				break
 			}
-			fmt.Print(message.GetInputLine())
-			scanner := bufio.NewScanner(os.Stdin)
-			scanner.Scan()
-			fmt.Println("")
-
-			c, cerr := strconv.Atoi(scanner.Text())
-			if cerr != nil || c >= len(choices) || c < 0 {
-				fmt.Println(message.GetWrongChoice())
-				break
-			}
-
-			if err := board.PrintList(choices[c]); err != nil {
+			if err := board.PrintList(productCode); err != nil {
 				log.Println(err)
 			}
 		case "3":
@@ -89,23 +77,11 @@ func main() {
 				log.Println(err)
 			}
 		case "8":
-			fmt.Println(message.GetWhichBoard())
-			choices, err := market.PrintChoices()
+			productCode, err := market.SelectProductCode()
 			if err != nil {
 				log.Println(err)
 				break
 			}
-			fmt.Print(message.GetInputLine())
-			scanner := bufio.NewScanner(os.Stdin)
-			scanner.Scan()
-			fmt.Println("")
-
-			productNumber, err := strconv.Atoi(scanner.Text())
-			if err != nil || productNumber >= len(choices) || productNumber < 0 {
-				fmt.Println(message.GetWrongChoice())
-				break
-			}
-			productCode := choices[productNumber]
 
 			fmt.Println("childOrderType?")
 			fmt.Print(message.GetInputLine())
