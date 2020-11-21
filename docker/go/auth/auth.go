@@ -19,11 +19,11 @@ var aesKey string
 var iv []byte
 var secretLen int
 
-func SetAccessKey(k string) {
+func setAccessKey(k string) {
 	accessKey = k
 }
 
-func SetAccessSecret(s string) error {
+func setAccessSecret(s string) error {
 	b := make([]byte, 16)
 
 	_, err := io.ReadFull(rand.Reader, b)

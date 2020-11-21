@@ -49,18 +49,7 @@ func main() {
 				log.Println(err)
 			}
 		case menu.RegisterAccessKey:
-			fmt.Println(message.GetAPIKey())
-			fmt.Print(message.GetInputLine())
-			scanner := bufio.NewScanner(os.Stdin)
-			scanner.Scan()
-			fmt.Println("")
-			auth.SetAccessKey(scanner.Text())
-
-			fmt.Println(message.GetAPISecret())
-			fmt.Print(message.GetInputLine())
-			scanner.Scan()
-			fmt.Println("")
-			if err := auth.SetAccessSecret(scanner.Text()); err != nil {
+			if err := auth.RegisterAccessKey(); err != nil {
 				log.Println(err)
 			}
 		case menu.ShowBalance:
