@@ -1,7 +1,7 @@
 package menu
 
 const (
-	Exit int = iota
+	Exit int64 = iota
 	ShowMarkets
 	ShowBoard
 	RegisterAccessKey

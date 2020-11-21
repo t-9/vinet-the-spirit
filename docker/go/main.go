@@ -24,14 +24,9 @@ func main() {
 	fmt.Println("")
 
 	for {
-		fmt.Print(message.GetMenu())
-		scanner := bufio.NewScanner(os.Stdin)
-		scanner.Scan()
-		fmt.Println("")
-
-		c, err := strconv.Atoi(scanner.Text())
-		if err != nil || c < 0 {
-			log.Println(message.GetWrongChoice())
+		c, err := menu.SelectMenu()
+		if err != nil {
+			fmt.Println(err)
 			fmt.Println("")
 			continue
 		}
@@ -93,6 +88,7 @@ func main() {
 
 			fmt.Println("childOrderType?")
 			fmt.Print(message.GetInputLine())
+			scanner := bufio.NewScanner(os.Stdin)
 			scanner.Scan()
 			fmt.Println("")
 			childOrderType := scanner.Text()

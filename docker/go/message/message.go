@@ -1,38 +1,47 @@
 package message
 
-import (
-	"fmt"
-
-	"vinet/menu"
-)
-
 func GetHello() string {
 	return "ごきげんよう^_^"
 }
 
-func GetMenu() string {
-	return fmt.Sprintf(`いかがなさいますか?
-%d. マーケット一覧を表示して
-%d. 板情報を表示して
-%d. アクセスキーを登録して
-%d. 資産残高を取得して
-%d. 仮想通貨預入履歴を表示して
-%d. 入金履歴を表示して
-%d. 預入用アドレスを表示して
-%d. 新規注文を出して
-%d. 特に用はないよ
-%s`,
-		menu.ShowMarkets,
-		menu.ShowBoard,
-		menu.RegisterAccessKey,
-		menu.ShowBalance,
-		menu.ShowCoinIn,
-		menu.ShowDeposit,
-		menu.ShowAddress,
-		menu.SendChildOrder,
-		menu.Exit,
-		GetInputLine(),
-	)
+func GetShowMarkets() string {
+	return "マーケット一覧を表示して"
+}
+
+func GetShowBoard() string {
+	return "板情報を表示して"
+}
+
+func GetRegisterAccessKey() string {
+	return "アクセスキーを登録して"
+}
+
+func GetShowBalance() string {
+	return "資産残高を取得して"
+}
+
+func GetShowCoinIn() string {
+	return "仮想通貨預入履歴を表示して"
+}
+
+func GetShowDeposit() string {
+	return "入金履歴を表示して"
+}
+
+func GetShowAddress() string {
+	return "預入用アドレスを表示して"
+}
+
+func GetSendChildOrder() string {
+	return "新規注文を出して"
+}
+
+func GetExit() string {
+	return "特に用はないよ"
+}
+
+func GetWhatDoYouDo() string {
+	return "いかがなさいますか?"
 }
 
 func GetBye() string {
