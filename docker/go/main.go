@@ -75,7 +75,7 @@ func main() {
 				break
 			}
 
-			fmt.Println("childOrderType?")
+			fmt.Println(message.GetOrderType())
 			fmt.Print(message.GetInputLine())
 			scanner := bufio.NewScanner(os.Stdin)
 			scanner.Scan()
@@ -86,7 +86,7 @@ func main() {
 				break
 			}
 
-			fmt.Println("side?")
+			fmt.Println(message.GetSide())
 			fmt.Print(message.GetInputLine())
 			scanner.Scan()
 			fmt.Println("")
@@ -98,7 +98,7 @@ func main() {
 
 			var price float64
 			if childOrderType == sendchildorder.TypeLimit {
-				fmt.Println("price?")
+				fmt.Println(message.GetPrice())
 				fmt.Print(message.GetInputLine())
 				scanner := bufio.NewScanner(os.Stdin)
 				scanner.Scan()
@@ -110,7 +110,7 @@ func main() {
 				}
 			}
 
-			fmt.Println("size?")
+			fmt.Println(message.GetSize())
 			fmt.Print(message.GetInputLine())
 			scanner.Scan()
 			fmt.Println("")
@@ -120,7 +120,7 @@ func main() {
 				break
 			}
 
-			fmt.Println("minite_to_expire?")
+			fmt.Println(message.GetMinuteToExpire())
 			fmt.Print(message.GetInputLine())
 			scanner.Scan()
 			fmt.Println("")
@@ -130,7 +130,7 @@ func main() {
 				break
 			}
 
-			fmt.Println("time_in_force?")
+			fmt.Println(message.GetTimeInForce())
 			fmt.Print(message.GetInputLine())
 			scanner.Scan()
 			fmt.Println("")

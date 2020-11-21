@@ -49,7 +49,7 @@ func GetBye() string {
 }
 
 func GetWhichBoard() string {
-	return "どちらの板情報を表示致しますか?"
+	return "どちらの板に致しますか?"
 }
 
 func GetWrongChoice() string {
@@ -66,4 +66,28 @@ func GetAPIKey() string {
 
 func GetAPISecret() string {
 	return "API Secret"
+}
+
+func GetOrderType() string {
+	return "注文方法はいかがなさいますか?"
+}
+
+func GetSide() string {
+	return "買い注文と売り注文のどちらになさいますか?"
+}
+
+func GetPrice() string {
+	return "価格は幾らになさいますか?"
+}
+
+func GetSize() string {
+	return "注文数量は幾らになさいますか?"
+}
+
+func GetMinuteToExpire() string {
+	return "注文の有効期間は何分になさいますか?"
+}
+
+func GetTimeInForce() string {
+	return "執行数量条件はどちらになさいますか?"
 }
