@@ -18,6 +18,7 @@ func (c CoinIn) String() string {
 	)
 }
 
+// PrintList displays the history of virtual currency deposits.
 func PrintList() error {
 	coinins, err := getCoinIns()
 	if err != nil {

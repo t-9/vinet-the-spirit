@@ -13,17 +13,25 @@ import (
 )
 
 const (
-	TypeLimit  = "LIMIT"
+	// TypeLimit represents that the order type is a limit.
+	TypeLimit = "LIMIT"
+	// TypeMarket represents that the order type is a market.
 	TypeMarket = "MARKET"
 
-	SideBuy  = "BUY"
+	// SideBuy represents that the side is a buy.
+	SideBuy = "BUY"
+	// SideSell represents that the side is a sell.
 	SideSell = "SELL"
 
+	// TimeInForceGTC represents that the time in force is good till close.
 	TimeInForceGTC = "GTC"
+	// TimeInForceIOC represents that the time in force is immediate or close.
 	TimeInForceIOC = "IOC"
+	// TimeInForceFOK represents that the time in force is fill or kill.
 	TimeInForceFOK = "FOK"
 )
 
+// Body represents a request body.
 type Body struct {
 	ProductCode    string  `json:"product_code"`
 	ChildOrderType string  `json:"child_order_type"`
@@ -34,6 +42,7 @@ type Body struct {
 	TimeInForce    string  `json:"time_in_force"`
 }
 
+// Response reprents a response body.
 type Response struct {
 	ChildOrderAcceptanceID string `json:"child_order_acceptance_id"`
 }

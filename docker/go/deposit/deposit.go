@@ -11,6 +11,7 @@ import (
 	"vinet/auth"
 )
 
+// Deposit represents a deposit history.
 type Deposit struct {
 	ID           int64  `json:"id"`
 	OrderID      string `json:"order_id"`

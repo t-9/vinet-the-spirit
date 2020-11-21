@@ -43,6 +43,7 @@ func printChoices() ([]string, error) {
 	return choices, nil
 }
 
+// SelectProductCode makes you select the product code.
 func SelectProductCode() (string, error) {
 	fmt.Println(message.GetWhichBoard())
 	choices, err := printChoices()

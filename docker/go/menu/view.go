@@ -10,6 +10,7 @@ import (
 	"vinet/util"
 )
 
+// SelectMenu lets you select a menu.
 func SelectMenu() (int64, error) {
 	menuItemList := []int64{
 		ShowMarkets,

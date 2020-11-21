@@ -52,14 +52,17 @@ func setAccessSecret(s string) error {
 	return nil
 }
 
+// GetAccessKey gets an AccessKey.
 func GetAccessKey() string {
 	return accessKey
 }
 
+// GenerateTimestamp generates a timestamp.
 func GenerateTimestamp() string {
 	return strconv.FormatInt(time.Now().Unix(), 10)
 }
 
+// GenerateSign generates a sign.
 func GenerateSign(timestamp string, method string, path string, body string) (string, error) {
 	c, err := aes.NewCipher([]byte(aesKey))
 	if err != nil {

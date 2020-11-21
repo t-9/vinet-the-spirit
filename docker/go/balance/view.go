@@ -8,6 +8,7 @@ func (b Balance) String() string {
 	return fmt.Sprintf("%s, %f, %f", b.CurrencyCode, b.Amount, b.Available)
 }
 
+// PrintList displays asset balances.
 func PrintList() error {
 	balances, err := getBalances()
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"vinet/message"
 )
 
+// RegisterAccessKey registers an access key and an access secret.
 func RegisterAccessKey() error {
 	fmt.Println(message.GetAPIKey())
 	fmt.Print(message.GetInputLine())

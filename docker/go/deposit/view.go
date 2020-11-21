@@ -16,6 +16,7 @@ func (d Deposit) String() string {
 	)
 }
 
+// PrintList displays deposit histories.
 func PrintList() error {
 	deposits, err := getDeposits()
 	if err != nil {

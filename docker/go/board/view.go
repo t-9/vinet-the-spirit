@@ -29,6 +29,7 @@ Price, Size
 `, b.MidPrice, stringOrderList(b.Bids), stringOrderList(b.Asks))
 }
 
+// PrintList displays a board information.
 func PrintList(code string) error {
 	board, err := getBoard(code)
 	if err != nil {

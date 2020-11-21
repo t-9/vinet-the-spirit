@@ -11,6 +11,8 @@ import (
 	"vinet/auth"
 )
 
+// Address represents the address where
+// the virtual currency is deposited into a bitFlyer account.
 type Address struct {
 	Type         string `json:"type"`
 	CurrencyCode string `json:"currency_code"`

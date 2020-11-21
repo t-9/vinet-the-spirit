@@ -14,6 +14,7 @@ func (r Response) String() string {
 	return r.ChildOrderAcceptanceID
 }
 
+// Order makes a child order
 func Order() error {
 	productCode, err := market.SelectProductCode()
 	if err != nil {

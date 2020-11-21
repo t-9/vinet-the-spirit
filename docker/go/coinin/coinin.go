@@ -11,6 +11,7 @@ import (
 	"vinet/auth"
 )
 
+// CoinIn represents the history of virtual currency deposits.
 type CoinIn struct {
 	ID           int64   `json:"id"`
 	OrderID      string  `json:"order_id"`

@@ -11,6 +11,7 @@ func (a Address) String() string {
 	)
 }
 
+// PrintList displays a list of addresses.
 func PrintList() error {
 	addresses, err := getAddresses()
 	if err != nil {

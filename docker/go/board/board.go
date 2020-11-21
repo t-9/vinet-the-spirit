@@ -8,12 +8,14 @@ import (
 	"time"
 )
 
+// Board represents a board information.
 type Board struct {
 	MidPrice float64 `json:"mid_price"`
 	Bids     []Order `json:"bids"`
 	Asks     []Order `json:"asks"`
 }
 
+// Order represents an order information.
 type Order struct {
 	Price float64 `json:"price"`
 	Size  float64 `json:"size"`

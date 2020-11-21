@@ -11,6 +11,7 @@ import (
 	"vinet/auth"
 )
 
+// Balance represents the asset balance.
 type Balance struct {
 	CurrencyCode string  `json:"currency_code"`
 	Amount       float64 `json:"amount"`
