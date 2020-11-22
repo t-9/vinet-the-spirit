@@ -8,13 +8,13 @@ import (
 	"vinet/auth"
 	"vinet/balance"
 	"vinet/board"
-	"vinet/childorder"
+	sendchild "vinet/childorder/send"
 	"vinet/coinin"
 	"vinet/deposit"
 	"vinet/market"
 	"vinet/menu"
 	"vinet/message"
-	"vinet/parentorder"
+	sendparent "vinet/parentorder/send"
 )
 
 func main() {
@@ -67,11 +67,11 @@ func main() {
 				log.Println(err)
 			}
 		case menu.SendChildOrder:
-			if err := childorder.Order(); err != nil {
+			if err := sendchild.Order(); err != nil {
 				log.Println(err)
 			}
 		case menu.SendParentOrder:
-			if err := parentorder.Order(); err != nil {
+			if err := sendparent.Order(); err != nil {
 				log.Println(err)
 			}
 		}
