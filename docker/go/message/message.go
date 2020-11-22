@@ -119,3 +119,8 @@ func GetTimeInForce() string {
 func GetInvalidInputValue() string {
 	return "有効な値を入力してくださいませ"
 }
+
+// GetChildOrderAcceptanceID gets the child order acceptance id message.
+func GetChildOrderAcceptanceID() string {
+	return "ChildOrderAcceptanceID"
+}
