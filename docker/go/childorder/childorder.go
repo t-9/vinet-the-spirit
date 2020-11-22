@@ -1,4 +1,4 @@
-package sendchildorder
+package childorder
 
 import (
 	"bytes"
