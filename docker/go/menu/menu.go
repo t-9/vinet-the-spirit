@@ -19,4 +19,6 @@ const (
 	ShowAddress
 	// SendChildOrder represents sending a child order.
 	SendChildOrder
+	// SendParentOrder represents sending a parent order.
+	SendParentOrder
 )

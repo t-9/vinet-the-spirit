@@ -9,3 +9,13 @@ func ContainsInt64(h []int64, n int64) bool {
 	}
 	return false
 }
+
+// ContainsString returns true if contains a needle in a heystack.
+func ContainsString(h []string, n string) bool {
+	for _, v := range h {
+		if v == n {
+			return true
+		}
+	}
+	return false
+}

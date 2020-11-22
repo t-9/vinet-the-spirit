@@ -29,9 +29,10 @@ func Order() error {
 		return err
 	}
 
-	var price float64
+	var price *float64
 	if childOrderType == order.TypeLimit {
-		price, err = order.InputPrice()
+		p, err := order.InputPrice()
+		price = &p
 		if err != nil {
 			return err
 		}

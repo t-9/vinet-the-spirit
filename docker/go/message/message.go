@@ -45,6 +45,11 @@ func GetSendChildOrder() string {
 	return "新規注文を出して"
 }
 
+// GetSendParentOrder gets the send parent order message.
+func GetSendParentOrder() string {
+	return "新規親注文を出して"
+}
+
 // GetExit gets the exit message.
 func GetExit() string {
 	return "特に用はないよ"
@@ -100,6 +105,16 @@ func GetPrice() string {
 	return "価格は幾らになさいますか?"
 }
 
+// GetTrigerPrice gets the triger price message.
+func GetTrigerPrice() string {
+	return "トリガー価格は幾らになさいますか?"
+}
+
+// GetTrailOffset gets the trail offset message.
+func GetTrailOffset() string {
+	return "トレール幅は幾らになさいますか?"
+}
+
 // GetSize gets the size message.
 func GetSize() string {
 	return "注文数量は幾らになさいますか?"
@@ -115,6 +130,11 @@ func GetTimeInForce() string {
 	return "執行数量条件はどちらになさいますか?"
 }
 
+// GetOrderMethod gets the order method message.
+func GetOrderMethod() string {
+	return "執注文方法はどちらになさいますか?"
+}
+
 // GetInvalidInputValue gets the invalid input value message.
 func GetInvalidInputValue() string {
 	return "有効な値を入力してくださいませ"
@@ -123,4 +143,9 @@ func GetInvalidInputValue() string {
 // GetChildOrderAcceptanceID gets the child order acceptance id message.
 func GetChildOrderAcceptanceID() string {
 	return "ChildOrderAcceptanceID"
+}
+
+// GetParentOrderAcceptanceID gets the parent order acceptance id message.
+func GetParentOrderAcceptanceID() string {
+	return "ParentOrderAcceptanceID"
 }

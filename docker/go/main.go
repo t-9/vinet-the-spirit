@@ -14,6 +14,7 @@ import (
 	"vinet/market"
 	"vinet/menu"
 	"vinet/message"
+	"vinet/parentorder"
 )
 
 func main() {
@@ -67,6 +68,10 @@ func main() {
 			}
 		case menu.SendChildOrder:
 			if err := childorder.Order(); err != nil {
+				log.Println(err)
+			}
+		case menu.SendParentOrder:
+			if err := parentorder.Order(); err != nil {
 				log.Println(err)
 			}
 		}
