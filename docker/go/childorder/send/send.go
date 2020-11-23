@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"vinet/order"
+	"vinet/auth"
 )
 
 // Body represents a request body.
@@ -26,7 +26,7 @@ type Response struct {
 func sendChildOrder(b Body) (Response, error) {
 	var resBody Response
 
-	body, err := order.SendOrder(b, "/v1/me/sendchildorder")
+	body, err := auth.PostRequest("/v1/me/sendchildorder", b)
 	if err != nil {
 		return resBody, err
 	}

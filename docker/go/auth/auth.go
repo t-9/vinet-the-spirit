@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/hmac"
@@ -8,7 +9,11 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/hex"
+	"encoding/json"
+	"fmt"
 	"io"
+	"io/ioutil"
+	"net/http"
 	"strconv"
 	"time"
 )
@@ -79,4 +84,73 @@ func GenerateSign(timestamp string, method string, path string, body string) (st
 
 	mac.Write([]byte(plain))
 	return hex.EncodeToString(mac.Sum(nil)), nil
+}
+
+// GetRequest requests a get repuest.
+func GetRequest(path string, params map[string]string) ([]byte, error) {
+	return sendRequest(http.MethodGet, path, params, nil)
+}
+
+// PostRequest requests a post repuest.
+func PostRequest(path string, b interface{}) ([]byte, error) {
+	return sendRequest(http.MethodPost, path, map[string]string{}, b)
+}
+
+func sendRequest(method, path string, params map[string]string, b interface{}) ([]byte, error) {
+	url := "https://api.bitflyer.com" + path
+
+	reqBody := []byte{}
+	var reqBodyReader io.Reader
+	if b != nil {
+		var err error
+		reqBody, err = json.Marshal(b)
+		if err != nil {
+			return []byte{}, err
+		}
+		reqBodyReader = bytes.NewReader(reqBody)
+	}
+
+	req, err := http.NewRequest(method, url, reqBodyReader)
+	if err != nil {
+		return []byte{}, err
+	}
+
+	timestamp := GenerateTimestamp()
+	sign, err := GenerateSign(timestamp, method, path, string(reqBody))
+	if err != nil {
+		return []byte{}, err
+	}
+
+	req.Header.Set("ACCESS-KEY", GetAccessKey())
+	req.Header.Set("ACCESS-TIMESTAMP", timestamp)
+	req.Header.Set("ACCESS-SIGN", sign)
+	req.Header.Set("Content-Type", "application/json")
+
+	values := req.URL.Query()
+	for k, v := range params {
+		values.Add(k, v)
+	}
+	req.URL.RawQuery = values.Encode()
+
+	timeout := time.Duration(5 * time.Second)
+	client := &http.Client{
+		Timeout: timeout,
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return []byte{}, err
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return []byte{}, err
+	}
+
+	if resp.StatusCode != 200 {
+		return []byte{}, fmt.Errorf(string(body))
+	}
+
+	return body, nil
 }
