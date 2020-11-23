@@ -115,6 +115,16 @@ func sendRequest(method, path string, params map[string]string, b interface{}) (
 		return []byte{}, err
 	}
 
+	values := req.URL.Query()
+	for k, v := range params {
+		values.Add(k, v)
+	}
+	req.URL.RawQuery = values.Encode()
+
+	if len(params) > 0 {
+		path += "?" + req.URL.RawQuery
+	}
+
 	timestamp := GenerateTimestamp()
 	sign, err := GenerateSign(timestamp, method, path, string(reqBody))
 	if err != nil {
@@ -125,12 +135,6 @@ func sendRequest(method, path string, params map[string]string, b interface{}) (
 	req.Header.Set("ACCESS-TIMESTAMP", timestamp)
 	req.Header.Set("ACCESS-SIGN", sign)
 	req.Header.Set("Content-Type", "application/json")
-
-	values := req.URL.Query()
-	for k, v := range params {
-		values.Add(k, v)
-	}
-	req.URL.RawQuery = values.Encode()
 
 	timeout := time.Duration(5 * time.Second)
 	client := &http.Client{

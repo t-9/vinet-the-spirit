@@ -40,6 +40,11 @@ func GetShowAddress() string {
 	return "預入用アドレスを表示して"
 }
 
+// GetShowParentOrder gets the show parent order message.
+func GetShowParentOrder() string {
+	return "親注文一覧を表示して"
+}
+
 // GetSendChildOrder gets the send child order message.
 func GetSendChildOrder() string {
 	return "新規注文を出して"
