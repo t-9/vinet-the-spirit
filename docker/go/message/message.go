@@ -55,6 +55,11 @@ func GetSendParentOrder() string {
 	return "新規親注文を出して"
 }
 
+// GetCancelParentOrder gets the cancel parent order message.
+func GetCancelParentOrder() string {
+	return "親注文をキャンセルして"
+}
+
 // GetExit gets the exit message.
 func GetExit() string {
 	return "特に用はないよ"
@@ -73,6 +78,11 @@ func GetBye() string {
 // GetWhichBoard gets the which board message.
 func GetWhichBoard() string {
 	return "どちらの板に致しますか?"
+}
+
+// GetWhichParentOrderID gets the which parent order id message.
+func GetWhichParentOrderID() string {
+	return "どちらの親注文IDに致しますか?"
 }
 
 // GetWrongChoice gets the wrong choice message.
@@ -153,4 +163,9 @@ func GetChildOrderAcceptanceID() string {
 // GetParentOrderAcceptanceID gets the parent order acceptance id message.
 func GetParentOrderAcceptanceID() string {
 	return "ParentOrderAcceptanceID"
+}
+
+// GetParentOrderCancelSuccess gets the parent order cancel success message.
+func GetParentOrderCancelSuccess() string {
+	return "親注文のキャンセルに成功しました"
 }

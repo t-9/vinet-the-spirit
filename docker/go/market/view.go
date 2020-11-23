@@ -13,6 +13,7 @@ func (m Market) String() string {
 	return fmt.Sprintf("%s, %s, %s", m.ProductCode, m.MarketType, m.Alias)
 }
 
+// PrintList displays markets.
 func PrintList() error {
 	markets, err := getMarkets()
 	if err != nil {

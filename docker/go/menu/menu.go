@@ -23,4 +23,6 @@ const (
 	SendParentOrder
 	// ShowParentOrder represents showing parent orders.
 	ShowParentOrder
+	// CancelParentOrder represents canceling a parent order.
+	CancelParentOrder
 )

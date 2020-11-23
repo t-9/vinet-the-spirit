@@ -23,6 +23,7 @@ func SelectMenu() (int64, error) {
 		SendChildOrder,
 		SendParentOrder,
 		ShowParentOrder,
+		CancelParentOrder,
 		Exit,
 	}
 
@@ -65,6 +66,8 @@ func getMenuItemMessage(n int64) string {
 		return message.GetSendParentOrder()
 	case ShowParentOrder:
 		return message.GetShowParentOrder()
+	case CancelParentOrder:
+		return message.GetCancelParentOrder()
 	case Exit:
 		return message.GetExit()
 	}

@@ -133,3 +133,12 @@ func inputPositiveInt64(mes string) (int64, error) {
 	}
 	return in, nil
 }
+
+func inputString(mes string) string {
+	fmt.Println(mes)
+	fmt.Print(message.GetInputLine())
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	fmt.Println("")
+	return scanner.Text()
+}

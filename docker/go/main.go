@@ -14,6 +14,7 @@ import (
 	"vinet/market"
 	"vinet/menu"
 	"vinet/message"
+	cancelparent "vinet/parentorder/cancel"
 	getparent "vinet/parentorder/get"
 	sendparent "vinet/parentorder/send"
 )
@@ -77,6 +78,10 @@ func main() {
 			}
 		case menu.ShowParentOrder:
 			if err := getparent.PrintList(); err != nil {
+				log.Println(err)
+			}
+		case menu.CancelParentOrder:
+			if err := cancelparent.Cancel(); err != nil {
 				log.Println(err)
 			}
 		}

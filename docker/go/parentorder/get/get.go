@@ -10,7 +10,7 @@ import (
 // ParentOrder represents a parent order.
 type ParentOrder struct {
 	ID                      int64   `json:"id"`
-	ParentOrder             string  `json:"product_order"`
+	ParentOrderID           string  `json:"parent_order_id"`
 	ProductCode             string  `json:"product_code"`
 	Side                    string  `json:"side"`
 	ParentOrderType         string  `json:"parent_order_type"`
